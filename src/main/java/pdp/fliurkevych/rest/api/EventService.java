@@ -1,6 +1,6 @@
 package pdp.fliurkevych.rest.api;
 
-import pdp.fliurkevych.rest.dto.EventDto;
+import pdp.fliurkevych.rest.dto.Event;
 
 import java.util.List;
 
@@ -9,15 +9,15 @@ import java.util.List;
  */
 public interface EventService {
 
-  EventDto createEvent();
+  Event createEvent(Event event);
 
-  EventDto updateEvent(EventDto eventDto);
+  Event updateEvent(Event event);
 
-  EventDto getEvent(Long eventId);
+  Event getEvent(Long eventId);
 
   void deleteEvent(Long eventId);
 
-  List<EventDto> getAllEvents();
+  List<Event> getAllEvents();
 
-  List<EventDto> getAllEventsByTitle(String title);
+  List<Event> getAllEventsByTitle(String title);
 }
