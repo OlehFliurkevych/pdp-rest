@@ -1,30 +1,36 @@
 package pdp.fliurkevych.rest.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import pdp.fliurkevych.rest.enums.EventType;
+
+import java.io.Serializable;
+import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import pdp.fliurkevych.rest.enums.EventType;
-
-import java.math.BigDecimal;
-import java.sql.Date;
+import javax.persistence.Table;
 
 /**
  * @author Oleh Fliurkevych
  */
-@Data
-@Entity
+@Table
+@Setter
+@Getter
+@Entity(name = "event")
 @AllArgsConstructor
-public class Event {
+@NoArgsConstructor
+public class Event implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String title;
-  private BigDecimal place;
+  private Integer place;
   private String speaker;
   private EventType eventType;
   private Date dateTime;

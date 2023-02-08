@@ -15,7 +15,7 @@ public interface EventService {
 
   Event getEvent(Long eventId);
 
-  void deleteEvent(Long eventId);
+  boolean deleteEvent(Long eventId);
 
   List<Event> getAllEvents();
 

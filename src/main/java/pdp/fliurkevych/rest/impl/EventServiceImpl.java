@@ -48,12 +48,14 @@ public class EventServiceImpl implements EventService {
   }
 
   @Override
-  public void deleteEvent(Long eventId) {
+  public boolean deleteEvent(Long eventId) {
     log.info("Deleting event with id: [{}]", eventId);
     eventRepository.deleteById(eventId);
     if (!eventRepository.existsById(eventId)) {
       log.info("Deleted event with id: [{}]", eventId);
+      return true;
     }
+    return false;
   }
 
   @Override
