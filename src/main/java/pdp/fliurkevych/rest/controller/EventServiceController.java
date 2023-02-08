@@ -30,12 +30,12 @@ public class EventServiceController {
     this.eventService = eventService;
   }
 
-  @PostMapping("/")
+  @PostMapping
   public ResponseEntity<Event> createEvent(@RequestBody Event event) {
     return ResponseEntity.ok(eventService.createEvent(event));
   }
 
-  @PutMapping("/")
+  @PutMapping
   public ResponseEntity<Event> updateEvent(@RequestBody Event event) {
     return ResponseEntity.ok(eventService.updateEvent(event));
   }
