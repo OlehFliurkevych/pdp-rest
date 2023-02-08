@@ -57,7 +57,7 @@ public class EventServiceController {
     return ResponseEntity.ok(eventService.getAllEvents());
   }
 
-  @GetMapping("/search/title")
+  @GetMapping("/search")
   public ResponseEntity<List<Event>> getEventsByTitle(@RequestParam String title) {
     return ResponseEntity.ok(eventService.getAllEventsByTitle(title));
   }
