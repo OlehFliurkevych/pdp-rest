@@ -17,3 +17,6 @@ Build and deploy instance of Postgres DB in Docker:
 
 Generate JavaDoc:
 > mvn javadoc:javadoc
+
+Run Spring Boot application:
+> ./mvnw spring-boot:run
