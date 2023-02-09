@@ -22,11 +22,11 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/events")
-public class EventServiceController {
+public class EventController {
 
   private final EventService eventService;
 
-  public EventServiceController(EventService eventService) {
+  public EventController(EventService eventService) {
     this.eventService = eventService;
   }
 

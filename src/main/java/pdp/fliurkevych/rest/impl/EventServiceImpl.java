@@ -21,6 +21,9 @@ public class EventServiceImpl implements EventService {
     this.eventRepository = eventRepository;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Event createEvent(Event event) {
     log.info("Saving new event");
@@ -29,6 +32,9 @@ public class EventServiceImpl implements EventService {
     return saved;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Event updateEvent(Event event) {
     log.info("Updating event with id: [{}]", event.getId());
@@ -37,6 +43,9 @@ public class EventServiceImpl implements EventService {
     return updated;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Event getEvent(Long eventId) {
     log.info("Fetching event with id: [{}]", eventId);
@@ -47,6 +56,9 @@ public class EventServiceImpl implements EventService {
     return event;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean deleteEvent(Long eventId) {
     log.info("Deleting event with id: [{}]", eventId);
@@ -58,6 +70,9 @@ public class EventServiceImpl implements EventService {
     return false;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public List<Event> getAllEvents() {
     log.info("Fetching all events");
@@ -66,6 +81,9 @@ public class EventServiceImpl implements EventService {
     return events;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public List<Event> getAllEventsByTitle(String title) {
     log.info("Fetching events by title: [{}]", title);
