@@ -1,5 +1,9 @@
 package pdp.fliurkevych.rest.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import static pdp.fliurkevych.rest.hateoas.LinkBuilder.buildSelfLink;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pdp.fliurkevych.rest.api.EventService;
 import pdp.fliurkevych.rest.dto.Event;
-
-import java.util.List;
+import pdp.fliurkevych.rest.dto.EventList;
 
 /**
  * @author Oleh Fliurkevych
@@ -32,17 +35,23 @@ public class EventController {
 
   @PostMapping
   public ResponseEntity<Event> createEvent(@RequestBody Event event) {
-    return ResponseEntity.ok(eventService.createEvent(event));
+    var created = eventService.createEvent(event);
+    created.add(buildSelfLink(created.getId(), EventController.class));
+    return ResponseEntity.ok(created);
   }
 
   @PutMapping
   public ResponseEntity<Event> updateEvent(@RequestBody Event event) {
-    return ResponseEntity.ok(eventService.updateEvent(event));
+    var updated = eventService.updateEvent(event);
+    updated.add(buildSelfLink(updated.getId(), EventController.class));
+    return ResponseEntity.ok(updated);
   }
 
   @GetMapping("/{eventId}")
   public ResponseEntity<Event> getById(@PathVariable Long eventId) {
-    return ResponseEntity.ok(eventService.getEvent(eventId));
+    var event = eventService.getEvent(eventId);
+    event.add(buildSelfLink(event.getId(), EventController.class));
+    return ResponseEntity.ok(event);
   }
 
   @DeleteMapping("/{eventId}")
@@ -53,13 +62,23 @@ public class EventController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Event>> getAllEvents() {
-    return ResponseEntity.ok(eventService.getAllEvents());
+  public ResponseEntity<EventList> getAllEvents() {
+    var eventList = eventService.getAllEvents();
+    for (Event event : eventList.getEvents()) {
+      event.add(buildSelfLink(event.getId(), EventController.class));
+    }
+    eventList.add(linkTo(methodOn(EventController.class).getAllEvents()).withSelfRel());
+    return ResponseEntity.ok(eventList);
   }
 
   @GetMapping("/search")
-  public ResponseEntity<List<Event>> getEventsByTitle(@RequestParam String title) {
-    return ResponseEntity.ok(eventService.getAllEventsByTitle(title));
+  public ResponseEntity<EventList> getEventsByTitle(@RequestParam String title) {
+    var eventList = eventService.getAllEventsByTitle(title);
+    for (Event event : eventList.getEvents()) {
+      event.add(buildSelfLink(event.getId(), EventController.class));
+    }
+    eventList.add(linkTo(methodOn(EventController.class).getAllEvents()).withSelfRel());
+    return ResponseEntity.ok(eventList);
   }
 
 }

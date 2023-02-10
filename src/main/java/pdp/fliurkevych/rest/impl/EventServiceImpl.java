@@ -4,9 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pdp.fliurkevych.rest.api.EventService;
 import pdp.fliurkevych.rest.dto.Event;
+import pdp.fliurkevych.rest.dto.EventList;
 import pdp.fliurkevych.rest.repository.EventRepository;
-
-import java.util.List;
 
 /**
  * @author Oleh Fliurkevych
@@ -74,21 +73,21 @@ public class EventServiceImpl implements EventService {
    * {@inheritDoc}
    */
   @Override
-  public List<Event> getAllEvents() {
+  public EventList getAllEvents() {
     log.info("Fetching all events");
     var events = eventRepository.findAll();
     log.info("Fetched [{}] records of event", events.size());
-    return events;
+    return new EventList(events);
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public List<Event> getAllEventsByTitle(String title) {
+  public EventList getAllEventsByTitle(String title) {
     log.info("Fetching events by title: [{}]", title);
     var events = eventRepository.findAllByTitle(title);
     log.info("Fetched [{}] records of event by title: [{}]", events.size(), title);
-    return events;
+    return new EventList(events);
   }
 }

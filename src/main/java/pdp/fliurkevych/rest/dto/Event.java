@@ -1,10 +1,10 @@
 package pdp.fliurkevych.rest.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
 import pdp.fliurkevych.rest.enums.EventType;
 
 import java.io.Serializable;
@@ -24,7 +24,7 @@ import javax.persistence.Table;
 @Entity(name = "event")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Event implements Serializable {
+public class Event extends RepresentationModel<Event> implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

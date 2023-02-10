@@ -1,8 +1,7 @@
 package pdp.fliurkevych.rest.api;
 
 import pdp.fliurkevych.rest.dto.Event;
-
-import java.util.List;
+import pdp.fliurkevych.rest.dto.EventList;
 
 /**
  * @author Oleh Fliurkevych
@@ -37,8 +36,8 @@ public interface EventService {
    * Deletes instance of {@link Event} by id
    *
    * @param eventId identifier of {@link Event}
-   * @return true if instance of {@link Event} deleted, 
-   * false if instance of {@link Event}  don't deleted 
+   * @return true if instance of {@link Event} deleted, false if instance of {@link Event}  don't
+   * deleted
    */
   boolean deleteEvent(Long eventId);
 
@@ -47,7 +46,7 @@ public interface EventService {
    *
    * @return collection of {@link Event}
    */
-  List<Event> getAllEvents();
+  EventList getAllEvents();
 
   /**
    * Gets all instances of {@link Event} by title
@@ -55,5 +54,5 @@ public interface EventService {
    * @param title title
    * @return collection of {@link Event} by title
    */
-  List<Event> getAllEventsByTitle(String title);
+  EventList getAllEventsByTitle(String title);
 }
