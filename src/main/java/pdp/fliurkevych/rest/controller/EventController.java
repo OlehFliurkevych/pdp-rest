@@ -64,8 +64,10 @@ public class EventController {
   @GetMapping
   public ResponseEntity<EventList> getAllEvents() {
     var eventList = eventService.getAllEvents();
-    for (Event event : eventList.getEvents()) {
-      event.add(buildSelfLink(event.getId(), EventController.class));
+    if (!eventList.getEvents().isEmpty()) {
+      for (Event event : eventList.getEvents()) {
+        event.add(buildSelfLink(event.getId(), EventController.class));
+      }
     }
     eventList.add(linkTo(methodOn(EventController.class).getAllEvents()).withSelfRel());
     return ResponseEntity.ok(eventList);
@@ -74,8 +76,10 @@ public class EventController {
   @GetMapping("/search")
   public ResponseEntity<EventList> getEventsByTitle(@RequestParam String title) {
     var eventList = eventService.getAllEventsByTitle(title);
-    for (Event event : eventList.getEvents()) {
-      event.add(buildSelfLink(event.getId(), EventController.class));
+    if (!eventList.getEvents().isEmpty()) {
+      for (Event event : eventList.getEvents()) {
+        event.add(buildSelfLink(event.getId(), EventController.class));
+      }
     }
     eventList.add(linkTo(methodOn(EventController.class).getAllEvents()).withSelfRel());
     return ResponseEntity.ok(eventList);
