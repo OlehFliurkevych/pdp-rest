@@ -21,6 +21,8 @@ Generate JavaDoc:
 Run Spring Boot application:
 > ./mvnw spring-boot:run
 ***
+**Swagger URL**: _localhost:8080/swagger-ui/index.html_
+***
 ### Example:
 #### Request:
 > curl --location --request GET 'localhost:8080/events'
