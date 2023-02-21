@@ -5,6 +5,6 @@ package pdp.fliurkevych.rest.enums;
  */
 public enum EventType {
 
-  SIMPLE, COMPLEX
+  SIMPLE, COMPLEX, DEFAULT
 
 }
